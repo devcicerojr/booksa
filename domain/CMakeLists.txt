@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(Domain)
+#TODO: Finish Employee class
+
 
 message(">>>Component: ${PROJECT_NAME}")
 
@@ -16,9 +18,11 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/WorkDay")
 include_directories()
 
 set(DOMAIN_SOURCES ${DOMAIN_COMMON_SOURCES}
-    ${DOMAIN_CUSTOMER_SOURCES})
+    ${DOMAIN_CUSTOMER_SOURCES}
+    ${DOMAIN_EMPLOYEE_SOURCES})
 set(DOMAIN_HEADERS ${DOMAIN_COMMON_HEADERS}
-    ${DOMAIN_CUSTOMER_HEADERS})
+    ${DOMAIN_CUSTOMER_HEADERS}
+    ${DOMAIN_EMPLOYEE_HEADERS})
 
 
 add_library(${PROJECT_NAME} ${DOMAIN_SOURCES} ${DOMAIN_HEADERS})

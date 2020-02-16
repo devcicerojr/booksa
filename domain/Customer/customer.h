@@ -17,8 +17,13 @@ namespace booksa {
 
     public:
       Customer() = delete;
-      explicit Customer(Name name, Address address);
+      explicit Customer(unsigned int id, const Name& name, const Address& address);
       ~Customer();
+
+      void setName(const Name& name);
+      Name getName();
+      void setAddress(const Address& address);
+      Address getAddress();
   };
 } // namespace booksa
 #endif // CUSTOMER_H

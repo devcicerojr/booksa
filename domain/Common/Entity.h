@@ -7,7 +7,8 @@ namespace booksa {
   private:
     unsigned int id_ = 0;
   public:
-    Entity() = default;
+    Entity() = delete;
+    explicit Entity(unsigned int id) : id_(id){}
     virtual ~Entity();
     unsigned int getId() {return id_;}
   };

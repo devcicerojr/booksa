@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(Domain)
 #TODO: Finish Employee class
+#TODO: Update Asset and Service classes
 
 
 message(">>>Component: ${PROJECT_NAME}")
@@ -19,10 +20,12 @@ include_directories()
 
 set(DOMAIN_SOURCES ${DOMAIN_COMMON_SOURCES}
     ${DOMAIN_CUSTOMER_SOURCES}
-    ${DOMAIN_EMPLOYEE_SOURCES})
+    ${DOMAIN_EMPLOYEE_SOURCES}
+    ${DOMAIN_ASSET_SOURCES})
 set(DOMAIN_HEADERS ${DOMAIN_COMMON_HEADERS}
     ${DOMAIN_CUSTOMER_HEADERS}
-    ${DOMAIN_EMPLOYEE_HEADERS})
+    ${DOMAIN_EMPLOYEE_HEADERS}
+    ${DOMAIN_ASSET_HEADERS})
 
 
 add_library(${PROJECT_NAME} ${DOMAIN_SOURCES} ${DOMAIN_HEADERS})

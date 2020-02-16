@@ -3,6 +3,8 @@
 
 #include "../Common/Entity.h"
 #include "../Common/Name.h"
+#include "../Asset/Service.h"
+#include <vector>
 
 namespace booksa {
 
@@ -10,6 +12,7 @@ namespace booksa {
   {
   private:
     Name name_;
+    std::vector<Service> allowed_services_;
   public:
     Employee() = delete;
     Employee(unsigned int id);

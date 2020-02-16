@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(Domain)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
 
 message(">>>Component: ${PROJECT_NAME}")
 
@@ -15,7 +13,12 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/Employee")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/Order")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/WorkDay")
 
-set(DOMAIN_SOURCES ${DOMAIN_COMMON_SOURCES})
-set(DOMAIN_HEADERS ${DOMAIN_COMMON_HEADERS})
+include_directories()
+
+set(DOMAIN_SOURCES ${DOMAIN_COMMON_SOURCES}
+    ${DOMAIN_CUSTOMER_SOURCES})
+set(DOMAIN_HEADERS ${DOMAIN_COMMON_HEADERS}
+    ${DOMAIN_CUSTOMER_HEADERS})
+
 
 add_library(${PROJECT_NAME} ${DOMAIN_SOURCES} ${DOMAIN_HEADERS})

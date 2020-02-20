@@ -6,7 +6,7 @@ namespace booksa {
   struct Address {
     std::string street;
     std::string city;
-    std::string phone;
+    std::string zip_code;
   };
 } // namespace booksa
 

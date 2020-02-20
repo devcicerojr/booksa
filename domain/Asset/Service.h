@@ -1,12 +1,18 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
+#include <string>
+
 namespace booksa {
-class Service
-{
-public:
-  Service();
-};
+  typedef std::string Competence;
+  class Service
+  {
+
+  public:
+    Service();
+  };
+
+
 
 } //namespace booksa
 #endif // SERVICE_H

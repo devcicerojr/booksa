@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.0)
 project(Domain)
 
 #TODO: Update Asset and Service classes
+#TODO: Add Inline to functions applicable
+#TODO: Service / Product discount logic
 
 
 message(">>>Component: ${PROJECT_NAME}")

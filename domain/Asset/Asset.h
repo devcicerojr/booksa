@@ -10,8 +10,8 @@ namespace booksa {
   {
   public:
     virtual ~Asset();
-    virtual std::string getName() = 0;
-    virtual Price getPrice() = 0;
+    virtual std::string getName() const = 0;
+    virtual Price getPrice() const = 0;
   protected:
     std::string name_;
     Price price_;

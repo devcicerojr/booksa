@@ -1,46 +1,21 @@
 #ifndef WORKDAY_H
 #define WORKDAY_H
 #include "../Common/IEntity.h"
+// #include "../Common/Time.h"
 #include "../Asset/Service.h"
 #include <set>
 
 
 namespace booksa {
-
-// WORK_UNIT_VAL in minutes default = 10
-  const unsigned short int WORK_UNIT_VAL = 10;
-  const unsigned short int UNITS_PER_DAY = 24 * 60 / WORK_UNIT_VAL;
-
-  enum Months {
-    JANUARY,
-    FEBRUARY,
-    MARCH,
-    APRIL,
-    MAY,
-    JUNE,
-    JULY,
-    AUGUST,
-    SEPTEMBER,
-    OCTOBER,
-    NOVEMBER,
-    DECEMBER
-  };
-
-  enum WeekDays {
-    SUNDAY,
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURSDAY,
-    FRIDAY,
-    SATURDAY
-  };
-
   class WorkDay : IEntity
   {
   private:
+    bool is_holiday_ = false;
     std::set<Service*> services_;
+
   public:
+    // 0 to 11
+    unsigned short int getMonth() const;
     WorkDay();
   };
 

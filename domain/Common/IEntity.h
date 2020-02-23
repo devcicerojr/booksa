@@ -5,15 +5,13 @@ namespace booksa {
 
   class IEntity {
   private:
-    unsigned long int id_ = 0;
+    unsigned long int id_;
   public:
     virtual ~IEntity();
-    unsigned long int getId() const {return id_;}
-    void setId(unsigned long int new_id) {id_ = new_id;}
-
+    virtual unsigned long int getId() = 0;
+    virtual void setId(unsigned long int new_id) = 0;
   protected:
-    explicit IEntity(unsigned long int id=0) : id_(id){}
-
+    IEntity(unsigned long int id) {id_ = id;}
   };
 
 } // namespace booksa

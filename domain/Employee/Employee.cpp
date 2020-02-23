@@ -4,7 +4,8 @@ namespace booksa {
   Employee::Employee(const Name &name,
                      const Address &address):
     name_(name),
-    address_(address)
+    address_(address),
+    IEntity(0)
   {
 
   }
@@ -18,12 +19,12 @@ namespace booksa {
 
   }
 
-  void Employee::addServiceCompetence(Competence service_name) {
-    competences_.insert(service_name);
+  void Employee::addServiceCompetence(const std::shared_ptr<Service> &service) {
+    competences_.insert(service);
   }
 
-  void Employee::removeServiceCompetence(Competence service_name) {
-    competences_.erase(service_name);
+  void Employee::removeServiceCompetence(const std::shared_ptr<Service> &service) {
+    competences_.erase(service);
   }
 
   Name Employee::getName() const {

@@ -4,7 +4,8 @@ namespace booksa {
 
   Customer::Customer(const Name &name, const Address &address) :
     name_(name),
-    address_(address) {
+    address_(address),
+    IEntity(0) {
 
   }
 

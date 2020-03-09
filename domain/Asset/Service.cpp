@@ -2,8 +2,9 @@
 
 namespace booksa {
 
-  Service::Service(const NeededEmployees &needed_employees) :
-    needed_employees_(needed_employees)
+  Service::Service(const std::string &name, const Price &price, const NeededEmployees &needed_employees) :
+    needed_employees_(needed_employees),
+    Asset(name, price)
   {
 
   }

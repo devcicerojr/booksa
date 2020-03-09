@@ -5,7 +5,7 @@
 #include "../Common/Name.h"
 #include "../Common/Address.h"
 #include "../Asset/Service.h"
-#include <unordered_set>
+#include <set>
 #include <memory>
 
 namespace booksa {
@@ -15,7 +15,7 @@ namespace booksa {
   private:
     Name name_;
     Address address_;
-    std::unordered_set<std::shared_ptr<Service>> competences_;
+    std::set<std::shared_ptr<Service>> competences_;
   public:
     Employee() = delete;
     explicit Employee(const Name &name, const Address &address);

@@ -9,13 +9,14 @@ namespace booksa {
   class Asset : IEntity
   {
   public:
+    Asset() = delete;
     virtual ~Asset();
     virtual std::string getName() const = 0;
     virtual Price getPrice() const = 0;
   protected:
     std::string name_;
     Price price_;
-    Asset();
+    explicit Asset(const std::string &name, const Price &price);
   };
 
 } // namespace booksa

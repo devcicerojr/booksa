@@ -7,6 +7,11 @@ namespace booksa {
   const unsigned short int MINUTE_UNIT = 5;
   const unsigned short int MINUTE_INTERVALS = 24 * 60 / MINUTE_UNIT;
 
+  struct Year {
+    unsigned int year;
+  };
+
+
   enum Month {
     JANUARY,
     FEBRUARY,
@@ -56,6 +61,13 @@ namespace booksa {
     D31
   };
 
+  struct DateRepr
+  {
+    Day day;
+    Month month;
+    Year year;
+  };
+
   enum WeekDay {
     SUNDAY,
     MONDAY,
@@ -65,8 +77,6 @@ namespace booksa {
     FRIDAY,
     SATURDAY
   };
-
-  typedef unsigned int Year;
 
   enum DayHour {
     H00,

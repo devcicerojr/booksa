@@ -11,21 +11,20 @@ namespace booksa {
   class WorkDay : IEntity
   {
   private:
-
     bool is_holiday_ = false;
     std::set<Service*> services_;
 
     TimeInterval open_time_{TimeRepr{DayHour::H08,MinuteVals::M00},
                              TimeRepr{DayHour::H18, MinuteVals::M00}};
-
+    DateRepr date_;
   public:
     // 0 to 11
     Month getMonth() const;
     Day getDay() const;
-    WeekDay getWeekDay() const;
+    Year getYear() const;
 
 
-    WorkDay();
+    WorkDay(const DateRepr &date);
   };
 
 } // namespace booksa

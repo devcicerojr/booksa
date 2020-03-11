@@ -9,6 +9,24 @@ namespace booksa {
 
   struct Year {
     unsigned int year;
+    bool operator <(const Year &r_year) const{
+      return (year < r_year.year);
+    }
+    bool operator >(const Year &r_year) const{
+      return (year > r_year.year);
+    }
+    bool operator ==(const Year &r_year) const{
+      return (year == r_year.year);
+    }
+    bool operator >=(const Year &r_year) const {
+      return (year >= r_year.year);
+    }
+    bool operator <=(const Year &r_year) const {
+      return (year <= r_year.year);
+    }
+    bool operator !=(const Year &r_year) const {
+      return (year != r_year.year);
+    }
   };
 
 
@@ -149,20 +167,18 @@ namespace booksa {
     }
 
     bool operator <=(const TimeRepr &r_val) const {
-      if(hour > r_val.hour)
-        return false;
-      if(hour == r_val.hour && minute > r_val.minute)
-        return false;
-      return true;
+      return !(*this > r_val);
     }
 
     bool operator >=(const TimeRepr &r_val) const {
-      if(hour < r_val.hour)
-        return false;
-      if(hour == r_val.hour && minute < r_val.minute)
-        return false;
-      return true;
+      return !(*this < r_val);
     }
+
+    bool operator !=(const TimeRepr &r_val) const {
+      return !(*this == r_val);
+    }
+
+
   };
 
   struct TimeInterval {

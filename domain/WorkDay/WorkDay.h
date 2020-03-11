@@ -4,6 +4,7 @@
 // #include "../Common/Time.h"
 #include "../Asset/Service.h"
 #include <set>
+#include <memory>
 
 
 namespace booksa {
@@ -12,19 +13,27 @@ namespace booksa {
   {
   private:
     bool is_holiday_ = false;
-    std::set<Service*> services_;
+    std::set<std::shared_ptr<Service>> services_;
 
     TimeInterval open_time_{TimeRepr{DayHour::H08,MinuteVals::M00},
-                             TimeRepr{DayHour::H18, MinuteVals::M00}};
+                            TimeRepr{DayHour::H18, MinuteVals::M00}};
     DateRepr date_;
   public:
     // 0 to 11
-    Month getMonth() const;
+    WorkDay(const DateRepr &date);
+
     Day getDay() const;
+    Month getMonth() const;
     Year getYear() const;
 
+    bool operator <(const WorkDay &r_wd) const;
+    bool operator >(const WorkDay &r_wd) const;
+    bool operator ==(const WorkDay &r_wd) const;
+    bool operator <=(const WorkDay &r_wd) const;
+    bool operator >=(const WorkDay &r_wd) const;
+    bool operator !=(const WorkDay &r_wd) const;
 
-    WorkDay(const DateRepr &date);
+
   };
 
 } // namespace booksa

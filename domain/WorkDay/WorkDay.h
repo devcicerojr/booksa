@@ -25,6 +25,8 @@ namespace booksa {
     Day getDay() const;
     Month getMonth() const;
     Year getYear() const;
+    void setHoliday(bool val);
+    bool isHoliday() const;
 
     bool operator <(const WorkDay &r_wd) const;
     bool operator >(const WorkDay &r_wd) const;

@@ -20,6 +20,16 @@ namespace booksa {
     return date_.year;
   }
 
+  void WorkDay::setHoliday(bool val)
+  {
+    is_holiday_ = val;
+  }
+
+  bool WorkDay::isHoliday() const
+  {
+    return is_holiday_;
+  }
+
   bool WorkDay::operator <(const WorkDay &r_wd) const {
     Year year = getYear(), r_year = r_wd.getYear();
     Month month = getMonth(), r_month = r_wd.getMonth();

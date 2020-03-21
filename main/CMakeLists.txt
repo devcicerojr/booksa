@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5Widgets)
 
-message(">>>Component: ${PROJECT_NAME} main")
+message(">>>Component: ${PROJECT_NAME}")
 add_executable(${PROJECT_NAME} "main.cpp")
 
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)

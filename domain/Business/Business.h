@@ -18,6 +18,7 @@ namespace booksa {
   class Business : IEntity
   {
   private:
+    // Try to keep those vectors sorted to improve lookup
     std::vector<std::shared_ptr<Asset>> assets_;
     std::vector<std::shared_ptr<Customer>> customers_;
     BusinessCalendar calendar_;
@@ -25,12 +26,12 @@ namespace booksa {
   public:
     Business() = delete;
     explicit Business(const BusinessCalendar &calendar);
-    void addAsset(const Asset &asset);
-    void removeAsset(const Asset &asset);
-    void addCustomer(const Customer &customer);
-    void removeCustomer(const Customer &customer);
-    void addEmployee(const Employee &employee, EmployeeRole role = DEFAULT);
-    void removeEmployee(const Employee &employee);
+    void addAsset(const std::shared_ptr<Asset> asset);
+    void removeAsset(const std::shared_ptr<Asset> asset);
+    void addCustomer(const std::shared_ptr<Customer> customer);
+    void removeCustomer(const std::shared_ptr<Customer> customer);
+    void addEmployee(const std::shared_ptr<Employee> employee, EmployeeRole role = DEFAULT);
+    void removeEmployee(const std::shared_ptr<Employee> employee);
     BusinessCalendar& getCalendar() const;
   };
 

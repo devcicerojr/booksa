@@ -4,10 +4,20 @@
 
 namespace booksa {
 
-  Business::Business(const BusinessCalendar &calendar):
+  Business::Business(std::unique_ptr<BusinessCalendar> calendar):
   IEntity(0)
   {
-    calendar_ = calendar;
+    calendar_ = std::move(calendar);
+  }
+
+  std::string Business::getName() const
+  {
+    return name_;
+  }
+
+  void Business::setName(std::string str)
+  {
+    name_ = str;
   }
 
   void Business::addAsset(const std::shared_ptr<Asset> asset) {
@@ -17,9 +27,14 @@ namespace booksa {
   }
 
   void Business::removeAsset(const std::shared_ptr<Asset> asset) {
-    auto it = std::find(assets_.begin(), assets_.end(), asset);
+    auto it = std::lower_bound(assets_.begin(), assets_.end(), asset);
     if (it != assets_.end())
       assets_.erase(it);
+  }
+
+  bool Business::isAssetMember(const std::shared_ptr<Asset> asset)
+  {
+    return std::binary_search(assets_.begin(), assets_.end(), asset);
   }
 
   void Business::addCustomer(const std::shared_ptr<Customer> customer) {
@@ -29,9 +44,14 @@ namespace booksa {
   }
 
   void Business::removeCustomer(const std::shared_ptr<Customer> customer) {
-    auto it = std::find(customers_.begin(), customers_.end(), customer);
+    auto it = std::lower_bound(customers_.begin(), customers_.end(), customer);
     if (it != customers_.end())
       customers_.erase(it);
+  }
+
+  bool Business::isCustomerMember(const std::shared_ptr<Customer> customer)
+  {
+    return std::binary_search(customers_.begin(), customers_.end(), customer);
   }
 
   void Business::addEmployee(const std::shared_ptr<Employee> employee, EmployeeRole role) {
@@ -40,6 +60,16 @@ namespace booksa {
 
   void Business::removeEmployee(const std::shared_ptr<Employee> employee) {
     employees_.erase(employee);
+  }
+
+  bool Business::isEmployeeMember(const std::shared_ptr<Employee> employee)
+  {
+    auto it = employees_.find(employee);
+    return it != employees_.end() ? true : false;
+  }
+
+  const BusinessCalendar& Business::getCalendar() {
+    return *calendar_;
   }
 
 

@@ -5,7 +5,8 @@ namespace booksa {
 
   enum EmployeeRole {
     DEFAULT,
-    MANAGER
+    MANAGER,
+    ADMIN
   };
 
 } // namespace booksa

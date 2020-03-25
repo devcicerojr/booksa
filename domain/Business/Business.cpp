@@ -21,6 +21,7 @@ namespace booksa {
   }
 
   void Business::addAsset(const std::shared_ptr<Asset> asset) {
+    // keeping sorted and removing duplicates
     insert_sorted<std::shared_ptr<Asset>>(assets_, asset);
     auto last_uniq_it = std::unique(assets_.begin(), assets_.end());
     assets_.erase(last_uniq_it, assets_.end());
@@ -38,6 +39,7 @@ namespace booksa {
   }
 
   void Business::addCustomer(const std::shared_ptr<Customer> customer) {
+    // keeping sorted and removing duplicates
     insert_sorted<std::shared_ptr<Customer>>(customers_, customer);
     auto last_uniq_it = std::unique(customers_.begin(), customers_.end());
     customers_.erase(last_uniq_it, customers_.end());

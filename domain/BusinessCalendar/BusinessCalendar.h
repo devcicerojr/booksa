@@ -16,7 +16,7 @@ namespace booksa {
     BusinessCalendar();
     void addWorkDay(const WorkDay &work_day);
     void removeWorkDay(const WorkDay &work_day);
-    const std::shared_ptr<WorkDay> findWorkDay(const DateRepr &date) const;
+    const WorkDay* findWorkDay(const DateRepr &date) const;
 
   };
 

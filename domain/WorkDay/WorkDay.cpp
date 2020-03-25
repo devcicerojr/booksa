@@ -1,4 +1,5 @@
 #include "WorkDay.h"
+#include "../Common/CustomContainers.h"
 
 namespace booksa {
 
@@ -18,6 +19,25 @@ namespace booksa {
 
   Year WorkDay::getYear() const {
     return date_.year;
+  }
+
+  DateRepr WorkDay::getDate() const
+  {
+    return date_;
+  }
+
+  void WorkDay::addService(std::shared_ptr<Service> service)
+  {
+    // keeping sorted and removing duplicates
+    insert_sorted<std::shared_ptr<Service>>(services_, service);
+    auto last_uniq_it = std::unique(services_.begin(), services_.end());
+    services_.erase(last_uniq_it, services_.end());
+  }
+
+  void WorkDay::removeService(std::shared_ptr<Service> service) {
+    auto it = std::lower_bound(services_.begin(), services_.end(), service);
+    if (it != services_.end())
+      services_.erase(it);
   }
 
   void WorkDay::setHoliday(bool val)

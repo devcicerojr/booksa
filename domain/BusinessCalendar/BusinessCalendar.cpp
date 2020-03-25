@@ -17,12 +17,12 @@ namespace booksa {
       work_days_.erase(it);
   }
 
-  const std::shared_ptr<WorkDay> BusinessCalendar::findWorkDay(const DateRepr &date) const {
-    std::shared_ptr<WorkDay> work_d;
+  const WorkDay* BusinessCalendar::findWorkDay(const DateRepr &date) const {
+    const WorkDay *work_d;
     WorkDay wd(date);
     auto it = work_days_.find(wd);
     if(it != work_days_.end())
-      work_d = std::make_shared<WorkDay>(*it);
+      work_d = &*it;
     return work_d;
   }
 

@@ -3,7 +3,7 @@
 #include "../Common/IEntity.h"
 // #include "../Common/Time.h"
 #include "../Asset/Service.h"
-#include <set>
+#include <vector>
 #include <memory>
 
 
@@ -13,7 +13,7 @@ namespace booksa {
   {
   private:
     bool is_holiday_ = false;
-    std::set<std::shared_ptr<Service>> services_;
+    std::vector<std::shared_ptr<Service>> services_;
 
     TimeInterval open_time_{TimeRepr{DayHour::H08,MinuteVals::M00},
                             TimeRepr{DayHour::H18, MinuteVals::M00}};
@@ -25,6 +25,11 @@ namespace booksa {
     Day getDay() const;
     Month getMonth() const;
     Year getYear() const;
+    DateRepr getDate() const;
+
+    void addService(std::shared_ptr<Service> service);
+    void removeService(std::shared_ptr<Service> service);
+
     void setHoliday(bool val);
     bool isHoliday() const;
 

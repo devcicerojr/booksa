@@ -27,6 +27,9 @@ namespace booksa {
     bool operator !=(const Year &r_year) const {
       return (year != r_year.year);
     }
+    Year(unsigned int yr) {
+      year = yr;
+    }
   };
 
 
@@ -84,6 +87,51 @@ namespace booksa {
     Day day;
     Month month;
     Year year;
+    DateRepr(Day d=D01, Month m=JANUARY, Year y=0):
+    day(d),
+    month(m),
+    year(y){}
+
+    bool operator<(const DateRepr &rh_date) const {
+      if(year < rh_date.year)
+        return true;
+      if(year == rh_date.year) {
+        if(month < rh_date.month)
+          return true;
+      }
+      if(year == rh_date.year && month == rh_date.month) {
+        if(day < rh_date.day)
+          return true;
+      }
+      return false;
+    }
+
+    bool operator>(const DateRepr &rh_date) const {
+      if(year > rh_date.year)
+        return true;
+      if(year == rh_date.year) {
+        if(month > rh_date.month)
+          return true;
+      }
+      if(year == rh_date.year && month == rh_date.month) {
+        if(day > rh_date.day)
+          return true;
+      }
+      return false;
+    }
+
+    bool operator==(const DateRepr &rh_date) const {
+      if(year == rh_date.year &&
+         month == rh_date.month &&
+         day == rh_date.day)
+        return true;
+      return false;
+    }
+
+    bool operator!=(const DateRepr &rh_date) const {
+      return (*this == rh_date);
+    }
+
   };
 
   enum WeekDay {

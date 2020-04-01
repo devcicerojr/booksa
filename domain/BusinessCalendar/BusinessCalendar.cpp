@@ -1,4 +1,5 @@
 #include "BusinessCalendar.h"
+#include "../Common/CustomContainers.h"
 
 namespace booksa {
 
@@ -8,22 +9,26 @@ namespace booksa {
 
   }
 
-  void BusinessCalendar::addWorkDay(const WorkDay &work_day) {
-    work_days_.insert(work_day);
+  void BusinessCalendar::addWorkDay(unique_ptr<WorkDay> work_day) {
+    WorkDayHandle wdh(std::move(work_day));
+    insert_sorted<WorkDayHandle>(work_days_, wdh);
+    std::vector<WorkDayHandle>::iterator last_uniq_it = std::unique(work_days_.begin(), work_days_.end());
+    work_days_.erase(last_uniq_it, work_days_.end());
   }
-  void BusinessCalendar::removeWorkDay(const WorkDay &work_day) {
-    auto it = work_days_.find(work_day);
-    if(it != work_days_.end())
+
+  void BusinessCalendar::removeWorkDay(const WorkDayHandle& wd_handle) {
+    auto it = std::lower_bound(work_days_.begin(), work_days_.end(), wd_handle);
+    if (it != work_days_.end())
       work_days_.erase(it);
   }
 
   const WorkDay* BusinessCalendar::findWorkDay(const DateRepr &date) const {
-    const WorkDay *work_d;
-    WorkDay wd(date);
-    auto it = work_days_.find(wd);
-    if(it != work_days_.end())
-      work_d = &*it;
-    return work_d;
+    WorkDay* wd_retval = nullptr;
+    WorkDayHandle wd_handle;
+    wd_handle.setDate(date);
+    auto it = std::lower_bound(work_days_.begin(), work_days_.end(), wd_handle);
+    if (it != work_days_.end())
+      return (*it).wd_ptr.get();
   }
 
 } // namespace booksa

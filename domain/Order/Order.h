@@ -6,10 +6,11 @@
 
 namespace booksa {
 
-  class Order
+  class Order : IEntity
   {
   public:
     Order();
+    virtual ~Order() = 0;
   };
 
 } // namespace booksa

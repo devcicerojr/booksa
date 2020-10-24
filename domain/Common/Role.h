@@ -1,5 +1,4 @@
-#ifndef ROLE_H
-#define ROLE_H
+#pragma once
 
 namespace booksa {
 
@@ -10,5 +9,3 @@ namespace booksa {
   };
 
 } // namespace booksa
-
-#endif // ROLE_H

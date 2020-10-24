@@ -4,15 +4,14 @@ namespace booksa {
 
   Customer::Customer(const Name &name, const Address &address) :
     name_(name),
-    address_(address),
-    IEntity(0) {
+    address_(address) {
 
   }
 
   Customer::Customer(unsigned long int id, const Name& name, const Address& address) :
+    IEntity(id),
     name_(name),
-    address_(address),
-    IEntity(id) {
+    address_(address) {
 
   }
 

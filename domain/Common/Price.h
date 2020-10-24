@@ -12,7 +12,7 @@ namespace booksa {
 
     // use Dollar as Default
     Currency(std::string name = "US Dollar",
-             std::string symbol = "$"){}
+             std::string symbol = "$") : name(name), symbol(symbol) {}
   };
 
   // This enum  determines the size of vector RegCurrencies

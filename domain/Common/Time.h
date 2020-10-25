@@ -178,8 +178,8 @@ namespace booksa {
   };
 
   struct TimeRepr {
-    DayHour hour;
-    MinuteVals minute;
+    DayHour hour = H00;
+    MinuteVals minute = M00;
     bool operator < (const TimeRepr &r_val) const {
       if (hour < r_val.hour)
         return true;
@@ -216,7 +216,6 @@ namespace booksa {
     bool operator !=(const TimeRepr &r_val) const {
       return !(*this == r_val);
     }
-
 
   };
 

@@ -34,11 +34,12 @@ namespace booksa {
     unsigned short int cents = 0;
     Currency currency;
 
-    Price(unsigned int val, unsigned int cen,
-          const Currency &curr) :
+    Price(unsigned int val = 0, unsigned int cen = 0,
+          const Currency &curr = Currency()) :
       value(val),
       cents(cen),
       currency(curr){}
+
     Price(const Price &r_price) :
       value(r_price.value),
       cents(r_price.cents),

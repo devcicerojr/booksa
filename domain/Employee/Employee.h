@@ -1,33 +1,34 @@
-#ifndef EMPLOYEE_H
-#define EMPLOYEE_H
+#pragma once
 
 #include "../Common/IEntity.h"
 #include "../Common/Name.h"
 #include "../Common/Address.h"
-#include "../Asset/Service.h"
+#include "../Common/Phone.h"
+
 #include <set>
 #include <memory>
 
 namespace booksa {
 
+  class Service;
   class Employee : IEntity
   {
   private:
     Name name_;
     Address address_;
-    std::set<std::shared_ptr<Service>> competences_;
+    Phone phone_;
+    std::set<std::shared_ptr<Service>> competences_{};
   public:
     Employee() = delete;
-    explicit Employee(const Name &name, const Address &address);
-    explicit Employee(unsigned long int id, const Name &name, const Address &address);
+    explicit Employee(Name const &name, Address const &address);
+    explicit Employee(unsigned long int id, Name const &name, Address const &address);
     virtual ~Employee();
 
-    void addServiceCompetence(const std::shared_ptr<Service> &service);
-    void removeServiceCompetence(const std::shared_ptr<Service> &service);
+    void addServiceCompetence(std::shared_ptr<Service> const &service);
+    bool removeServiceCompetence(Service const &service);
     Name getName() const;
-    void setName(Name new_name);
+    void setName(Name const &new_name);
   };
 
 } // namespace booksa
 
-#endif // EMPLOYEE_H

@@ -30,4 +30,14 @@ namespace booksa {
   Address Customer::getAddress() const {
     return address_;
   }
+
+  void Customer::setPhone(const Phone &phone)
+  {
+    phone_ = phone;
+  }
+
+  Phone Customer::getPhone() const
+  {
+    return phone_;
+  }
 } //namespace booksa

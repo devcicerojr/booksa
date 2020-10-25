@@ -3,8 +3,8 @@
 namespace booksa {
 
   Service::Service(const std::string &name, const Price &price, const NeededEmployees &needed_employees) :
-    needed_employees_(needed_employees),
-    Asset(name, price)
+    Asset(name,price),
+    needed_employees_(needed_employees)
   {
 
   }
@@ -16,7 +16,7 @@ namespace booksa {
 
   Price Service::getPrice() const
   {
-    return price_;
+    return this->price_;
   }
 
   unsigned short int Service::getMinEmployeesNeeded() const {

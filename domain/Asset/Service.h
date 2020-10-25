@@ -1,5 +1,4 @@
-#ifndef SERVICE_H
-#define SERVICE_H
+#pragma once
 
 #include "Asset.h"
 #include "../Common/Time.h"
@@ -26,11 +25,10 @@ namespace booksa {
     unsigned int duration_min = 10;
   public:
     Service() = delete;
-    explicit Service(const std::string &name, const Price &price, const NeededEmployees &needed_employees = NeededEmployees(1,1));
+    Service(const std::string &name, const Price &price, const NeededEmployees &needed_employees = NeededEmployees(1,1));
     std::string getName() const override;
     Price getPrice() const override;
     unsigned short int getMinEmployeesNeeded() const;
   };
 
 } //namespace booksa
-#endif // SERVICE_H

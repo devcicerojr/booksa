@@ -13,7 +13,12 @@ namespace booksa {
     virtual std::string getName() const = 0;
     virtual Price getPrice() const = 0;
 
+    Asset(Asset &&asset);
+    Asset& operator = (Asset &&rh_asset);
     bool operator < (Asset const &rh_asset);
+    bool operator == (Asset const &rh_asset);
+    bool operator != (Asset const &rh_asset);
+    bool operator > ( Asset const &rh_asset);
 
    protected:
     std::string name_;

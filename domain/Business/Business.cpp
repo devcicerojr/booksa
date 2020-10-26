@@ -1,5 +1,7 @@
 #include "Business.h"
 #include "../Common/CustomContainers.h"
+#include "../Asset/Asset.h"
+
 #include <algorithm>
 
 namespace booksa {
@@ -20,22 +22,30 @@ namespace booksa {
     name_ = str;
   }
 
-  void Business::addAsset(const std::shared_ptr<Asset> asset) {
+  void Business::addAsset(std::unique_ptr<Asset> &&asset) {
     // keeping sorted and removing duplicates
-    insert_sorted<std::shared_ptr<Asset>>(assets_, asset);
+    unq_insert_sorted<std::unique_ptr<Asset>>(assets_, std::move(asset));
     auto last_uniq_it = std::unique(assets_.begin(), assets_.end());
     assets_.erase(last_uniq_it, assets_.end());
   }
 
-  void Business::removeAsset(const std::shared_ptr<Asset> asset) {
-    auto it = std::lower_bound(assets_.begin(), assets_.end(), asset);
+  void Business::removeAsset(Asset const &asset) {
+    auto it = std::lower_bound(begin(assets_), end(assets_), asset,
+              [](std::unique_ptr<Asset> &elem, Asset const &asset) {
+                return (*elem < asset)? true : false;
+              });
     if (it != assets_.end())
       assets_.erase(it);
   }
 
-  bool Business::isAssetMember(const std::shared_ptr<Asset> asset)
+  bool Business::isAssetMember(Asset const &asset)
   {
-    return std::binary_search(assets_.begin(), assets_.end(), asset);
+    auto found =  std::find_if(assets_.begin(), assets_.end(),
+          [&asset](std::unique_ptr<Asset> const &elem) {
+      return ((*elem) < asset) ? true : false;
+    });
+
+    return (found != end(assets_))? true : false;
   }
 
   void Business::addCustomer(const std::shared_ptr<Customer> customer) {
@@ -56,18 +66,31 @@ namespace booksa {
     return std::binary_search(customers_.begin(), customers_.end(), customer);
   }
 
-  void Business::addEmployee(const std::shared_ptr<Employee> employee, EmployeeRole role) {
-    employees_.insert(std::make_pair(employee, role));
+  void Business::addEmployee(std::unique_ptr<Employee> &&employee) {
+    unq_insert_sorted<std::unique_ptr<Employee>>(employees_, std::move(employee));
   }
 
-  void Business::removeEmployee(const std::shared_ptr<Employee> employee) {
-    employees_.erase(employee);
+  bool Business::removeEmployee(Employee const &employee) {
+    auto found = find_if(begin(employees_), end(employees_),
+                 [&employee](std::unique_ptr<Employee> const &elem) {
+                   return ((*elem).getName() == employee.getName()) ? true : false;
+    });
+
+    if (found != end(employees_)) {
+      employees_.erase(found);
+      return true;
+    }
+    return false;
+
   }
 
-  bool Business::isEmployeeMember(const std::shared_ptr<Employee> employee)
+  bool Business::isEmployeeMember(Employee const &employee)
   {
-    auto it = employees_.find(employee);
-    return it != employees_.end() ? true : false;
+    auto found = find_if(begin(employees_), end(employees_),
+                         [&](std::unique_ptr<Employee> &elem) {
+                           return (*elem == employee) ? true : false;
+            });
+    return (found != end(employees_)) ? true : false;
   }
 
   const BusinessCalendar& Business::getCalendar() {

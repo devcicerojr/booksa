@@ -1,5 +1,4 @@
-#ifndef ORDER_H
-#define ORDER_H
+#pragma once
 
 #include "../Common/IEntity.h"
 #include "../Common/Price.h"
@@ -14,5 +13,3 @@ namespace booksa {
   };
 
 } // namespace booksa
-
-#endif // ORDER_H

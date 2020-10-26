@@ -1,14 +1,12 @@
 #pragma once
 
 #include "../Common/IEntity.h"
-#include "../BusinessCalendar/BusinessCalendar.h"
-#include "../Asset/Asset.h"
-#include "../Customer/Customer.h"
-#include "../Employee/Employee.h"
 
+#include <string>
 #include <vector>
 #include <memory>
 #include <map>
+
 namespace booksa {
 
   using std::string;
@@ -16,6 +14,11 @@ namespace booksa {
   using std::shared_ptr;
   using std::unique_ptr;
   using std::map;
+
+  class Employee;
+  class Customer;
+  class Asset;
+  class BusinessCalendar;
 
   class Business : IEntity
   {
@@ -33,14 +36,14 @@ namespace booksa {
     void setName(string str);
     void addAsset(std::unique_ptr<Asset> &&asset);
     void removeAsset(Asset const &asset);
-    bool isAssetMember(Asset const &asset);
+    bool isAssetMember(Asset const &asset) const;
     void addCustomer(const shared_ptr<Customer> customer);
     void removeCustomer(const shared_ptr<Customer> customer);
-    bool isCustomerMember(const shared_ptr<Customer> customer);
+    bool isCustomerMember(const shared_ptr<Customer> customer) const;
     void addEmployee(unique_ptr<Employee> &&employee);
     bool removeEmployee(Employee const &employee);
-    bool isEmployeeMember(Employee const &employee);
-    const BusinessCalendar& getCalendar();
+    bool isEmployeeMember(Employee const &employee) const;
+    const BusinessCalendar& getCalendar() const;
   };
 
 } // namespaces booksa

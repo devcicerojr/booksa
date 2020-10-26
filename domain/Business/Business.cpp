@@ -1,24 +1,23 @@
 #include "Business.h"
 #include "../Common/CustomContainers.h"
 #include "../Asset/Asset.h"
+#include "../Employee/Employee.h"
+#include "../BusinessCalendar/BusinessCalendar.h"
 
 #include <algorithm>
 
 namespace booksa {
 
   Business::Business(std::unique_ptr<BusinessCalendar> calendar):
-  IEntity(0)
-  {
+  IEntity(0) {
     calendar_ = std::move(calendar);
   }
 
-  std::string Business::getName() const
-  {
+  std::string Business::getName() const {
     return name_;
   }
 
-  void Business::setName(std::string str)
-  {
+  void Business::setName(std::string str) {
     name_ = str;
   }
 
@@ -38,8 +37,7 @@ namespace booksa {
       assets_.erase(it);
   }
 
-  bool Business::isAssetMember(Asset const &asset)
-  {
+  bool Business::isAssetMember(Asset const &asset) const {
     auto found =  std::find_if(assets_.begin(), assets_.end(),
           [&asset](std::unique_ptr<Asset> const &elem) {
       return ((*elem) < asset) ? true : false;
@@ -61,8 +59,7 @@ namespace booksa {
       customers_.erase(it);
   }
 
-  bool Business::isCustomerMember(const std::shared_ptr<Customer> customer)
-  {
+  bool Business::isCustomerMember(const std::shared_ptr<Customer> customer) const {
     return std::binary_search(customers_.begin(), customers_.end(), customer);
   }
 
@@ -84,8 +81,7 @@ namespace booksa {
 
   }
 
-  bool Business::isEmployeeMember(Employee const &employee)
-  {
+  bool Business::isEmployeeMember(Employee const &employee) const {
     auto found = find_if(begin(employees_), end(employees_),
                          [&](std::unique_ptr<Employee> &elem) {
                            return (*elem == employee) ? true : false;
@@ -93,7 +89,7 @@ namespace booksa {
     return (found != end(employees_)) ? true : false;
   }
 
-  const BusinessCalendar& Business::getCalendar() {
+  const BusinessCalendar& Business::getCalendar() const {
     return *calendar_;
   }
 

@@ -13,8 +13,15 @@ namespace booksa {
     Currency(std::string name = "US Dollar",
              std::string symbol = "$") : name(name), symbol(symbol) {}
 
-    bool operator == (Currency const &rh_currency);
-    bool operator != (Currency const &rh_currency);
+    bool operator == (Currency const &rh_currency) const
+    {
+        return (name == rh_currency.name && symbol == rh_currency.symbol)? true : false;
+    }
+
+    bool operator != (Currency const &rh_currency) const
+    {
+        return !(*this == rh_currency);
+    }
   };
 
   // This enum  determines the size of vector RegCurrencies
@@ -47,33 +54,20 @@ namespace booksa {
       cents(r_price.cents),
       currency(r_price.currency){}
 
-    bool operator == (Price const &rh_price);
-    bool operator != (Price const &rh_price);
+    bool operator == (Price const &rh_price) const
+    {
+        if (value == rh_price.value &&
+                cents == rh_price.cents &&
+                currency == rh_price.currency) {
+            return true;
+        }
+        return false;
+    }
+
+    bool operator != (Price const &rh_price) const
+    {
+        return !(*this == rh_price);
+    }
   };
-
-  bool Price::operator ==(const Price &rh_price)
-  {
-      if (value == rh_price.value &&
-              cents == rh_price.cents &&
-              currency == rh_price.currency) {
-          return true;
-      }
-      return false;
-  }
-
-  bool Price::operator !=(const Price &rh_price)
-  {
-      return !(*this == rh_price);
-  }
-
-  bool Currency::operator ==(const Currency &rh_currency)
-  {
-      return (name == rh_currency.name && symbol == rh_currency.symbol)? true : false;
-  }
-
-  bool Currency::operator !=(const Currency &rh_currency)
-  {
-      return !(*this == rh_currency);
-  }
 
 } // namespace booksa

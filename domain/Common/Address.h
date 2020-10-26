@@ -9,16 +9,16 @@ namespace booksa {
     std::string street_number = "";
     std::string apartment_number = "";
     std::string zip_code = "";
-  };
 
-  bool operator == (Address const &lh_address , Address const &rh_address) {
-    if (lh_address.street == rh_address.street &&
-          lh_address.city == rh_address.city &&
-          lh_address.street_number == rh_address.street_number &&
-          lh_address.apartment_number == rh_address.apartment_number) {
-      return true;
+    bool operator == (Address const &rh_address) const {
+      if (street == rh_address.street &&
+            city == rh_address.city &&
+            street_number == rh_address.street_number &&
+            apartment_number == rh_address.apartment_number) {
+        return true;
+      }
+      return false;
     }
-    return false;
-  }
+  };
 } // namespace booksa
 

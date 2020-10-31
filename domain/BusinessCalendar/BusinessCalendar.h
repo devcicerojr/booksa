@@ -18,6 +18,7 @@ namespace booksa {
   class BusinessCalendar : IEntity
   {
   private:
+    // this vector should be kept ordered and without duplicates (set?)
     vector<unique_ptr<WorkDay>> work_days_{};
   public:
     BusinessCalendar() = default;

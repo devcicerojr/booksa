@@ -16,16 +16,18 @@ namespace booksa {
     return price_;
   }
 
-  Asset::Asset(Asset &&asset)
+  Asset::Asset(Asset &&rh_asset)
   {
-    if (*this != asset)
-      *this = std::move(asset);
+    name_ = rh_asset.getName();
+    price_ = std::move(rh_asset.getPrice());
   }
 
   Asset &Asset::operator =(Asset &&rh_asset)
   {
-    if (*this != rh_asset)
-      *this = std::move(rh_asset);
+    if (this != &rh_asset) {
+      name_ = rh_asset.getName();
+      price_ = std::move(rh_asset.getPrice());
+    }
     return *this;
   };
 

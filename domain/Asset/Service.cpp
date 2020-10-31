@@ -22,4 +22,14 @@ namespace booksa {
   unsigned short int Service::getMinEmployeesNeeded() const {
     return needed_employees_.minimum;
   }
+
+  void Service::setDurationInMinutes(unsigned int new_duration)
+  {
+    minute_duration_ = new_duration;
+  }
+
+  unsigned int Service::getDurationInMinutes() const
+  {
+    return minute_duration_;
+  }
 } // namespace booksa

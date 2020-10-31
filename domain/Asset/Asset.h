@@ -15,7 +15,7 @@ namespace booksa {
     virtual string getName() const;
     virtual Price getPrice() const;
 
-    Asset(Asset &&asset);
+    Asset(Asset &&rh_asset);
     Asset& operator = (Asset &&rh_asset);
     bool operator < (Asset const &rh_asset);
     bool operator == (Asset const &rh_asset);

@@ -22,13 +22,15 @@ namespace booksa {
 
   private:
     NeededEmployees needed_employees_{};
-    unsigned int duration_min = 10;
+    unsigned int minute_duration_ = 10;
   public:
     Service() = delete;
     Service(const std::string &name, const Price &price, const NeededEmployees &needed_employees = NeededEmployees(1,1));
     std::string getName() const override;
     Price getPrice() const override;
     unsigned short int getMinEmployeesNeeded() const;
+    void setDurationInMinutes(unsigned int new_duration);
+    unsigned int getDurationInMinutes() const;
   };
 
 } //namespace booksa

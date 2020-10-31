@@ -46,6 +46,17 @@ namespace booksa {
     return is_holiday_;
   }
 
+  void WorkDay::setWorkingTime(TimeInterval const &new_wt)
+  {
+    working_time_ = new_wt;
+    schedule_->intervalCap(working_time_);
+  }
+
+  TimeInterval WorkDay::getWorkingTime() const
+  {
+    return working_time_;
+  }
+
   bool WorkDay::operator <(const WorkDay &r_wd) const {
     Year year = getYear(), r_year = r_wd.getYear();
     Month month = getMonth(), r_month = r_wd.getMonth();

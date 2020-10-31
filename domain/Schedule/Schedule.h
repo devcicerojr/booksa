@@ -23,11 +23,10 @@ namespace booksa {
   public:
 
     Schedule() = default;
-    TimeInterval getTimeInterval() const;
-    void setTimeInterval(TimeInterval &new_time_interval);
 
     void add(ScheduleItem &&sch_item);
     void remove(ScheduleItem &sch_item);
+    void intervalCap(TimeInterval const &cap_interval);
 
   };
 

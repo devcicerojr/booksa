@@ -1,8 +1,6 @@
 #pragma once
 #include "../Common/IEntity.h"
 #include "../Common/Time.h"
-#include "../Asset/Service.h"
-#include "../Schedule/Schedule.h"
 #include <vector>
 #include <memory>
 
@@ -14,6 +12,7 @@ namespace booksa {
   using std::unique_ptr;
 
   class Schedule;
+  class Service;
 
   class WorkDay : IEntity
   {
@@ -39,6 +38,9 @@ namespace booksa {
 
     void setHoliday(bool val);
     bool isHoliday() const;
+
+    void setWorkingTime(TimeInterval const &new_wt);
+    TimeInterval getWorkingTime() const ;
 
     bool operator <(const WorkDay &r_wd) const;
     bool operator >(const WorkDay &r_wd) const;

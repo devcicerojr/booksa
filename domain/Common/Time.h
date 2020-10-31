@@ -1,4 +1,5 @@
 #pragma once
+#include <utility>
 
 namespace booksa {
 
@@ -222,23 +223,47 @@ namespace booksa {
   };
 
   struct TimeInterval {
-    TimeRepr begin;
-    TimeRepr end;
+    TimeRepr begin_;
+    TimeRepr end_;
     TimeInterval(TimeRepr const &r_begin, TimeRepr const &r_end)
     {
       if(r_begin > r_end) {
-        begin = r_end;
-        end = r_begin;
+        begin_ = r_end;
+        end_ = r_begin;
       } else {
-        begin = r_begin;
-        end = r_end;
+        begin_ = r_begin;
+        end_ = r_end;
       }
     }
 
+    TimeInterval(TimeInterval const &rh_timeInt) {
+      begin_ = rh_timeInt.begin_;
+      end_ = rh_timeInt.end_;
+    }
+
+    TimeInterval(TimeInterval &&rh_timeInt) {
+      begin_ = std::move(rh_timeInt.begin_);
+      end_ = std::move(rh_timeInt.end_);
+    }
+
+    TimeInterval& operator = (TimeInterval const &rh_timeInt) {
+      begin_ = rh_timeInt.begin_;
+      end_ = rh_timeInt.end_;
+      return *this;
+    }
+
+    TimeInterval& operator = (TimeInterval &&rh_timeInt) {
+      if(this != &rh_timeInt) {
+        begin_ = std::move(rh_timeInt.begin_);
+        end_ = std::move(rh_timeInt.end_);
+      }
+      return *this;
+    }
+
     bool operator < (TimeInterval const &rh_t) const {
-        if (begin < rh_t.begin)
+        if (begin_ < rh_t.begin_)
           return true;
-        else if (begin == rh_t.begin && end < rh_t.end) {
+        else if (begin_ == rh_t.begin_ && end_ < rh_t.end_) {
           return true;
         }
         return false;

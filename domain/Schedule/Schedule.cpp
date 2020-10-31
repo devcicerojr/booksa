@@ -4,6 +4,19 @@
 namespace booksa {
   using std::remove_if;
 
+  Schedule::Schedule(Schedule &&rh_sch)
+  {
+    services_scheduled_ = std::move(rh_sch.services_scheduled_);
+  }
+
+  Schedule &Schedule::operator =(Schedule &&rh_sch)
+  {
+    if (this != &rh_sch) {
+      services_scheduled_ = std::move(rh_sch.services_scheduled_);
+    }
+    return *this;
+  }
+
   void Schedule::add(ScheduleItem &&sch_item)
   {
     services_scheduled_.insert(std::move(sch_item));

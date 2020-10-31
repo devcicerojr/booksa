@@ -42,6 +42,11 @@ namespace booksa {
     void setWorkingTime(TimeInterval const &new_wt);
     TimeInterval getWorkingTime() const ;
 
+    void setSchedule(unique_ptr<Schedule> new_schedule);
+    const Schedule&  getSchedule() const;
+
+
+
     bool operator <(const WorkDay &r_wd) const;
     bool operator >(const WorkDay &r_wd) const;
     bool operator ==(const WorkDay &r_wd) const;

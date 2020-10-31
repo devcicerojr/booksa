@@ -1,10 +1,12 @@
 #include "WorkDay.h"
 #include "../Common/CustomContainers.h"
+#include "../Schedule/Schedule.h"
 
 namespace booksa {
 
   WorkDay::WorkDay(const DateRepr &date) :
-    date_(date)
+    date_(date),
+    schedule_(std::make_unique<Schedule>())
   {
 
   }
@@ -55,6 +57,16 @@ namespace booksa {
   TimeInterval WorkDay::getWorkingTime() const
   {
     return working_time_;
+  }
+
+  void WorkDay::setSchedule(unique_ptr<Schedule> new_schedule)
+  {
+    schedule_ = std::move(new_schedule);
+  }
+
+  const Schedule& WorkDay::getSchedule() const
+  {
+    return *(schedule_.get());
   }
 
   bool WorkDay::operator <(const WorkDay &r_wd) const {

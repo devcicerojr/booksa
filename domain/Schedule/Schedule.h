@@ -24,6 +24,9 @@ namespace booksa {
 
     Schedule() = default;
 
+    Schedule(Schedule &&rh_sch);
+    Schedule& operator = (Schedule &&rh_sch);
+
     void add(ScheduleItem &&sch_item);
     void remove(ScheduleItem &sch_item);
     void intervalCap(TimeInterval const &cap_interval);

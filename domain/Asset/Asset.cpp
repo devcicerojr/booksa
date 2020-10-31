@@ -6,6 +6,16 @@ namespace booksa {
     name_(name),
     price_(price){}
 
+  std::string Asset::getName() const
+  {
+    return name_;
+  }
+
+  Price Asset::getPrice() const
+  {
+    return price_;
+  }
+
   Asset::Asset(Asset &&asset)
   {
     if (*this != asset)

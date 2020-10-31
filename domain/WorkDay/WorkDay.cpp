@@ -4,7 +4,7 @@
 namespace booksa {
 
   WorkDay::WorkDay(const DateRepr &date) :
-    IEntity(0)
+    date_(date)
   {
 
   }
@@ -26,18 +26,14 @@ namespace booksa {
     return date_;
   }
 
-  void WorkDay::addService(std::shared_ptr<Service> service)
+  void WorkDay::addToSchedule(std::shared_ptr<Service> service, TimeInterval const &t_interval)
   {
-    // keeping sorted and removing duplicates
-    insert_sorted<std::shared_ptr<Service>>(services_, service);
-    auto last_uniq_it = std::unique(services_.begin(), services_.end());
-    services_.erase(last_uniq_it, services_.end());
+    schedule_->add(std::make_pair(t_interval, service));
   }
 
-  void WorkDay::removeService(std::shared_ptr<Service> service) {
-    auto it = std::lower_bound(services_.begin(), services_.end(), service);
-    if (it != services_.end())
-      services_.erase(it);
+  void WorkDay::removeFromSchedule(std::shared_ptr<Service> service, TimeInterval const &t_interval) {
+    auto sch_pair = std::make_pair(t_interval, service);
+    schedule_->remove(sch_pair);
   }
 
   void WorkDay::setHoliday(bool val)

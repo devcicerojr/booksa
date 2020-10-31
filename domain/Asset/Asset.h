@@ -2,16 +2,18 @@
 
 #include "../Common/IEntity.h"
 #include "../Common/Price.h"
+#include <string>
 
 namespace booksa {
+  using std::string;
 
   class Asset : IEntity
   {
   public:
-    explicit Asset(std::string const &name, Price const &price);
+    explicit Asset(string const &name, Price const &price);
     virtual ~Asset() = 0;
-    virtual std::string getName() const = 0;
-    virtual Price getPrice() const = 0;
+    virtual string getName() const;
+    virtual Price getPrice() const;
 
     Asset(Asset &&asset);
     Asset& operator = (Asset &&rh_asset);
@@ -21,7 +23,7 @@ namespace booksa {
     bool operator > ( Asset const &rh_asset);
 
    protected:
-    std::string name_;
+    string name_;
     Price price_;
   };
 

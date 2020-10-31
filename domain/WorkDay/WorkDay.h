@@ -1,23 +1,30 @@
-#ifndef WORKDAY_H
-#define WORKDAY_H
+#pragma once
 #include "../Common/IEntity.h"
-// #include "../Common/Time.h"
+#include "../Common/Time.h"
 #include "../Asset/Service.h"
+#include "../Schedule/Schedule.h"
 #include <vector>
 #include <memory>
 
 
 namespace booksa {
 
+  using std::vector;
+  using std::shared_ptr;
+  using std::unique_ptr;
+
+  class Schedule;
+
   class WorkDay : IEntity
   {
   private:
     bool is_holiday_ = false;
-    std::vector<std::shared_ptr<Service>> services_;
-
-    TimeInterval open_time_{TimeRepr{DayHour::H08,MinuteVals::M00},
-                            TimeRepr{DayHour::H18, MinuteVals::M00}};
     DateRepr date_;
+    TimeInterval working_time_{TimeRepr{DayHour::H06,MinuteVals::M00},
+                            TimeRepr{DayHour::H22, MinuteVals::M00}};
+
+    unique_ptr<Schedule> schedule_;
+
   public:
     // 0 to 11
     WorkDay(const DateRepr &date);
@@ -27,8 +34,8 @@ namespace booksa {
     Year getYear() const;
     DateRepr getDate() const;
 
-    void addService(std::shared_ptr<Service> service);
-    void removeService(std::shared_ptr<Service> service);
+    void addToSchedule(shared_ptr<Service> service , TimeInterval const &t_interval);
+    void removeFromSchedule(shared_ptr<Service> service, TimeInterval const &t_interval);
 
     void setHoliday(bool val);
     bool isHoliday() const;
@@ -44,4 +51,3 @@ namespace booksa {
   };
 
 } // namespace booksa
-#endif // WORKDAY_H

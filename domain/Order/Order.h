@@ -5,6 +5,12 @@
 
 namespace booksa {
 
+  enum OrderStatus {
+    BOOKED,
+    CANCELED,
+    FINISHED
+  };
+
   class Order : IEntity
   {
   public:

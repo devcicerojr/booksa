@@ -6,6 +6,8 @@ namespace booksa {
   unsigned short int const MINUTE_UNIT = 5;
   unsigned short int const MINUTE_INTERVALS = 24 * 60 / MINUTE_UNIT;
 
+
+
   struct Year {
     unsigned int year;
     bool operator <(const Year &r_year) const{
@@ -231,6 +233,15 @@ namespace booksa {
         begin = r_begin;
         end = r_end;
       }
+    }
+
+    bool operator < (TimeInterval const &rh_t) const {
+        if (begin < rh_t.begin)
+          return true;
+        else if (begin == rh_t.begin && end < rh_t.end) {
+          return true;
+        }
+        return false;
     }
 
   };

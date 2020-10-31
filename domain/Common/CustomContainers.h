@@ -17,8 +17,6 @@ namespace booksa {
             );
     }
 
-
-
     template <typename T>
     typename std::vector<T>::iterator
     unq_insert_sorted( std::vector<T> &vec, T &&item )

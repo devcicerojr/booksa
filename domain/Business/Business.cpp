@@ -83,8 +83,8 @@ namespace booksa {
 
   bool Business::isEmployeeMember(Employee const &employee) const {
     auto found = find_if(begin(employees_), end(employees_),
-                         [&](std::unique_ptr<Employee> &elem) {
-                           return (*elem == employee) ? true : false;
+                         [&](std::unique_ptr<Employee> const &elem) {
+                           return ((*elem) == employee) ? true : false;
             });
     return (found != end(employees_)) ? true : false;
   }

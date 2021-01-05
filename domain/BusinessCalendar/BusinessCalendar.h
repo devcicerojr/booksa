@@ -20,12 +20,14 @@ namespace booksa {
   private:
     // this vector should be kept ordered and without duplicates (set?)
     vector<unique_ptr<WorkDay>> work_days_{};
+    bool findAndRemove(DateRepr const &date);
   public:
     BusinessCalendar() = default;
     ~BusinessCalendar();
-    bool addWorkDay(unique_ptr<WorkDay> rh_work_day);
-    bool removeWorkDay(unique_ptr<WorkDay> rh_work_day);
-    weak_ptr<WorkDay> findWorkDay(DateRepr const &date) const;
+    void addWorkDay(unique_ptr<WorkDay> work_day);
+    bool removeWorkDay(DateRepr const &date);
+    void fill(vector<unique_ptr<WorkDay>> &&work_days);
+    WorkDay * findWorkDay(DateRepr const &date) const;
 
   };
 

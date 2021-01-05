@@ -1,5 +1,4 @@
-#ifndef CUSTOMCONTAINERS_H
-#define CUSTOMCONTAINERS_H
+#pragma once
 
 #include <vector>
 #include <algorithm>
@@ -32,4 +31,3 @@ namespace booksa {
     }
 } // namespace booksa
 
-#endif // CUSTOMCONTAINERS_H

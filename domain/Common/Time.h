@@ -1,7 +1,10 @@
 #pragma once
 #include <utility>
+#include <string>
 
 namespace booksa {
+
+  using std::string;
 
   // MINUTE_UNIT in minutes default = 10
   unsigned short int const MINUTE_UNIT = 5;
@@ -88,9 +91,9 @@ namespace booksa {
     Month month;
     Year year;
     DateRepr(Day d=D01, Month m=JANUARY, Year y=0):
-    day(d),
-    month(m),
-    year(y){}
+      day(d),
+      month(m),
+      year(y){}
 
     bool operator<(const DateRepr &rh_date) const {
       if(year < rh_date.year)
@@ -261,15 +264,75 @@ namespace booksa {
     }
 
     bool operator < (TimeInterval const &rh_t) const {
-        if (begin_ < rh_t.begin_)
-          return true;
-        else if (begin_ == rh_t.begin_ && end_ < rh_t.end_) {
-          return true;
-        }
-        return false;
+      if (begin_ < rh_t.begin_)
+        return true;
+      else if (begin_ == rh_t.begin_ && end_ < rh_t.end_) {
+        return true;
+      }
+      return false;
     }
 
   };
+
+//-------------------------------------------------------------------
+
+  unsigned int numberOfDays (unsigned int month, int year);
+
+  bool isDateValid(unsigned int day, unsigned int month, unsigned int year);
+
+  int dayNumber (unsigned int day, unsigned int month, unsigned int year);
+
+  string getMonthName(int monthNumber);
+
+
+
+  // Function to print the calendar of the given year
+//  void printCalendar(int year)
+//  {
+//      printf ("         Calendar - %d\n\n", year);
+//      int days;
+
+//      // Index of the day from 0 to 6
+//      int current = dayNumber (1, 1, year);
+
+//      // i --> Iterate through all the months
+//      // j --> Iterate through all the days of the
+//      //       month - i
+//      for (int i = 0; i < 12; i++)
+//      {
+//          days = numberOfDays (i, year);
+
+//          // Print the current month name
+//          printf("\n  ------------%s-------------\n",
+//                 getMonthName (i).c_str());
+
+//          // Print the columns
+//          printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
+
+//          // Print appropriate spaces
+//          int k;
+//          for (k = 0; k < current; k++)
+//              printf("     ");
+
+//          for (int j = 1; j <= days; j++)
+//          {
+//              printf("%5d", j);
+
+//              if (++k > 6)
+//              {
+//                  k = 0;
+//                  printf("\n");
+//              }
+//          }
+
+//          if (k)
+//              printf("\n");
+
+//          current = k;
+//      }
+
+//      return;
+//  }
 
 } // namespace booksa
 

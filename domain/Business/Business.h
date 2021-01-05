@@ -31,6 +31,7 @@ namespace booksa {
     vector<unique_ptr<Employee>> employees_;
   public:
     Business() = delete;
+    explicit Business(string name);
     explicit Business(unique_ptr<BusinessCalendar> calendar);
     string getName() const;
     void setName(string str);

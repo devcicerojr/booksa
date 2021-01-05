@@ -8,6 +8,12 @@
 
 namespace booksa {
 
+  Business::Business(std::string name) :
+    name_(name)
+  {
+
+  }
+
   Business::Business(std::unique_ptr<BusinessCalendar> calendar):
   IEntity(0) {
     calendar_ = std::move(calendar);
